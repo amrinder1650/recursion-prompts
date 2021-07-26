@@ -52,6 +52,20 @@ var arraySum = function(array) {
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+  if (n === 0) {
+    return true;
+  }
+  if (n === 1) {
+    return false;
+  }
+  else {
+    if (n > 0) {
+      return isEven(n-2);
+    }
+    if (n < 0) {
+      return isEven(n+2);
+    }
+  }
 
 };
 
@@ -62,13 +76,14 @@ var sumBelow = function(n) {
   if (n === 0) {
     return 0;
   }
-
-  if (n > 0) {
-    return (n + sumBelow(n-1)) - n;
+  if (n === 1 || n === -1) {
+    return 0;
   }
-
+  if (n > 0) {
+    return (n-1) + sumBelow((n-1));
+  }
   if (n < 0) {
-    return n + sumBelow(n+1) + n;
+    return (n+1) + sumBelow((n+1));
   }
 };
 
