@@ -185,11 +185,46 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+  if (y === 0) {
+    return NaN;
+  }
+  if (x === y) {
+    return 0
+  }
+  if (x < y && x >= 0) {
+    return x
+  }
+  if (x > 0) {
+    return modulo((x-y), y)
+  }
+
+
+
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator or
 // Math methods.
 var multiply = function(x, y) {
+  var accumulation = 0
+  if (x === 0 || y === 0) {
+    return 0
+  }
+  if (x === 1 && y === 1) {
+    return 1
+  }
+  if (x === 1) {
+    return y
+  }
+  if (y === 1) {
+    return x
+  }
+  if (y > 0) {
+    return accumulation += x + multiply(x, (y-1))
+  }
+  if (y < 0) {
+    return accumulation += -x + multiply(x, (y+1))
+  }
+  return accumulation
 };
 
 // 13. Write a function that divides two numbers without using the / operator or
@@ -258,6 +293,17 @@ var countKeysInObj = function(obj, key) {
 // countValuesInObj(obj, 'r') // 2
 // countValuesInObj(obj, 'e') // 1
 var countValuesInObj = function(obj, value) {
+  var count = 0
+	if (obj === value){
+		count ++
+	}
+	if (typeof obj === 'object'){
+		var values = Object.values(obj)
+		values.forEach(function(item){
+			count += countValuesInObj(item, value)
+		})
+	}
+	return count
 };
 
 // 24. Find all keys in an object (and nested objects) by a provided name and rename
